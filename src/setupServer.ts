@@ -35,10 +35,10 @@ export class ChattyServer {
   private securityMiddleware(app: Application): void {
     app.use(
       cookieSession({
-        name: 'sessoion',
+        name: 'session',
         keys: [config.SECRET_KEY_ONE!, config.SECRET_KEY_TWO!],
         maxAge: 24 * 7 * 60 * 60 * 1000,
-        secure: config.NODE_ENV !== 'deveopment'
+        secure: false
       })
     );
     app.use(hpp());
