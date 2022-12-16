@@ -1,3 +1,4 @@
+import { redisConnection } from './shared/services/redis/redis.connection';
 import mongoose from 'mongoose';
 import { config } from './config';
 import Logger from 'bunyan';
@@ -10,6 +11,7 @@ export default () => {
       .connect(`${config.DATABASE_URL}`)
       .then(() => {
         log.info('successfully connected to DB');
+        redisConnection.connect();
       })
       .catch((err) => {
         log.error(err);
